@@ -67,5 +67,8 @@ dependencies {
 }
 ```
 
+# Note
+Note that this example was made as simple as possible, so it is not recommended to follow the architecture.
+
 # Author
 [Stefanus Ayudha](https://github.com/stefanusayudha)
