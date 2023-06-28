@@ -47,6 +47,9 @@ collect(state) { value ->
 ## 7. Kotlin Arrow
 Arrow provides functional programming pattern to your code.
 
+## 8. Gson
+Gson serialization for RESTFULL method.
+
 
 
 # Implementation
