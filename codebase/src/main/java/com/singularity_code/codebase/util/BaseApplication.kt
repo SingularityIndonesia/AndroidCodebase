@@ -21,39 +21,31 @@ open class BaseApplication : Application() {
     private fun preparePluto() {
         Pluto.Installer(this)
             .addPlugin(PlutoNetworkPlugin("exceptions"))
-            .apply {
-                addPlugin(PlutoExceptionsPlugin("exceptions"))
-
-                PlutoExceptions.setExceptionHandler { thread, throwable ->
-                    Timber.tag("Exception")
-                        .w("uncaught exception handled on thread: ${thread.name} $throwable")
-                }
-
-                PlutoExceptions.setANRHandler { thread, exception ->
-                    Timber.tag("ANR")
-                        .d(exception, "potential ANR detected on thread: ${thread.name} $exception")
-                }
-
-                PlutoExceptions.mainThreadResponseThreshold = 10_000
-            }
-            .apply {
-                addPlugin(PlutoLoggerPlugin("logger"))
-                Timber.plant(PlutoTimberTree());
-            }
-            .apply {
-                addPlugin(PlutoSharePreferencesPlugin("sharedPref"))
-                // DB_NAME should be same as database name assigned while creating the database.
-                // PlutoRoomsDBWatcher.watch(DB_NAME, SampleDatabase::class.java)
-            }
-            .apply {
-                addPlugin(PlutoDatastorePreferencesPlugin("datastore"))
-                // val Context.appPreferences by preferencesDataStore(
-                //    name = PREF_NAME
-                // )
-                //
-                // PlutoDatastoreWatcher.watch(PREF_NAME, appPreferences)
-            }
+            .addPlugin(PlutoExceptionsPlugin("exceptions"))
+            .addPlugin(PlutoDatastorePreferencesPlugin("datastore"))
+            .addPlugin(PlutoLoggerPlugin("logger"))
+            .addPlugin(PlutoSharePreferencesPlugin("sharedPref"))
             .install()
+
+
+        //        PlutoExceptions.setExceptionHandler { thread, throwable ->
+        //            Timber.tag("Exception")
+        //                .w("uncaught exception handled on thread: ${thread.name} $throwable")
+        //        }
+        //
+        //        PlutoExceptions.setANRHandler { thread, exception ->
+        //            Timber.tag("ANR")
+        //                .d(exception, "potential ANR detected on thread: ${thread.name} $exception")
+        //        }
+        //        PlutoExceptions.mainThreadResponseThreshold = 10_000
+
+        Timber.plant(PlutoTimberTree());
+
+        // val Context.appPreferences by preferencesDataStore(
+        //    name = PREF_NAME
+        // )
+        //
+        // PlutoDatastoreWatcher.watch(PREF_NAME, appPreferences)
 
     }
 }
