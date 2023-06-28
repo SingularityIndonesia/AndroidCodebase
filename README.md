@@ -50,7 +50,9 @@ Arrow provides functional programming pattern to your code.
 ## 8. Gson
 Gson serialization for RESTFULL method.
 
-
+## 9. LazyFunction
+Lazy function is similar to stateflow. The block of lazy function is lazily executed, it will ignore rapid invocation if it's still busy,
+but the last invocation will always be executed. But you also can force the function to invoke immediately by calling `someLazyFunction.forceInvoke(..)`.
 
 # Implementation
 ```groovy
