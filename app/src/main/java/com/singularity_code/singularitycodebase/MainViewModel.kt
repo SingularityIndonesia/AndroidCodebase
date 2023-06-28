@@ -2,6 +2,7 @@ package com.singularity_code.singularitycodebase
 
 import androidx.lifecycle.ViewModel
 import com.singularity_code.codebase.util.collect
+import com.singularity_code.codebase.util.lazyFunction
 import com.singularity_code.codebase.util.provider
 import com.singularity_code.singularitycodebase.data.SampleFactory
 import com.singularity_code.singularitycodebase.domain.repo.SampleRepository
@@ -26,23 +27,23 @@ class MainViewModel(
         val flow = MutableStateFlow("Idle")
 
         // updater function
-        suspend fun updater() {
+        val updater = lazyFunction {
             val isLoading = sampleProvider.loading.first()
             if (isLoading) {
                 flow.emit("Loading..")
-                return
+                return@lazyFunction
             }
 
             val success = sampleProvider.success.first()
             if (success.first) {
                 flow.emit("Success : ${success.second}")
-                return
+                return@lazyFunction
             }
 
             val failed = sampleProvider.failed.first()
             if (failed.first) {
                 flow.emit("Failed : ${failed.second}")
-                return
+                return@lazyFunction
             }
         }
 
@@ -51,7 +52,7 @@ class MainViewModel(
             collect(
                 sampleProvider.state
             ) {
-                updater()
+                updater.tryInvoke( signature = "sampleProvider.state ${System.currentTimeMillis()}")
             }
         }
 
