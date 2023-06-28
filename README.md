@@ -1,4 +1,17 @@
 # Singularity Codebase
+# Implementation
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementation 'com.github.SingularityIndonesia:AndroidCodebase:1.3.0'
+}
+```
 
 # Features
 ## 1. Provider
@@ -52,20 +65,6 @@ Arrow provides functional programming pattern to your code.
 ## 9. LazyFunction
 Lazy function is similar to stateflow. The block of lazy function is lazily executed, it will ignore rapid invocation if it's still busy,
 but the last invocation will always be executed. But you also can force the function to invoke immediately by calling `someLazyFunction.forceInvoke(..)`.
-
-# Implementation
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-
-dependencies {
-    implementation 'com.github.SingularityIndonesia:AndroidCodebase:1.3.0'
-}
-```
 
 # Note
 Note that this example was made as simple as possible, so it is not recommended to follow the architecture.
