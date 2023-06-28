@@ -5,7 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 
 fun createHttpClient(
-    interceptors: List<Interceptor>
+    interceptors: List<Interceptor> = listOf()
 ): OkHttpClient = OkHttpClient.Builder()
     .apply {
         interceptors.forEach { interceptor ->
