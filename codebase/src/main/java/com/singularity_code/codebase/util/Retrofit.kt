@@ -17,3 +17,15 @@ fun <I> createRetrofitService(
     .addConverterFactory(GsonConverterFactory.create())
     .build()
     .create(service)
+
+fun <I> retrofitService(
+    @NonNull service: Class<I>,
+    httpClient: OkHttpClient,
+    baseUrl: String,
+) = lazy {
+    createRetrofitService(
+        service,
+        httpClient,
+        baseUrl
+    )
+}

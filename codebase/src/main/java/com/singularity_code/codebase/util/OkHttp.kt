@@ -14,3 +14,9 @@ fun createHttpClient(
     }
     .addInterceptor(PlutoInterceptor())
     .build()
+
+fun httpClient(
+    interceptors: List<Interceptor> = listOf()
+) = lazy {
+    createHttpClient(interceptors)
+}
