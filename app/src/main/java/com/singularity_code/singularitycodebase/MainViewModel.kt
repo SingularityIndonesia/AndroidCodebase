@@ -19,7 +19,8 @@ class MainViewModel(
 
     /**
      * this is the pattern that I recommended,
-     * I called it "State Automation
+     * I called it "State Automation".
+     * This pattern successfully reduce Code Diversity and remove Side Effects completely.
      **/
     val sampleText: Flow<String> by lazy {
 

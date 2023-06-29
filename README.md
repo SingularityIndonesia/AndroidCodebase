@@ -1,4 +1,17 @@
 # Singularity Codebase
+# Implementation
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementation 'com.github.SingularityIndonesia:AndroidCodebase:1.3.0'
+}
+```
 
 # Features
 ## 1. Provider
@@ -48,7 +61,6 @@ collect(state) { value ->
 Arrow provides functional programming pattern to your code.
 
 ## 8. Gson
-Gson serialization for RESTFULL method.
 
 ## 9. LazyFunction
 Lazy function is similar to stateflow. The block of lazy function is lazily executed, it will ignore rapid invocation if it's still busy,
@@ -59,6 +71,9 @@ but the last invocation will always be executed. But you also can force the func
 - [Permission Util](docs/Permission.md)
 - [State Collectors](docs/StateCollector.md)
 
+
+# Note
+Note that this example was made as simple as possible, so it is not recommended to follow the architecture.
 
 # Implementation
 ```groovy
