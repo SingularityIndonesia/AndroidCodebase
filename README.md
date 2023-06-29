@@ -48,29 +48,13 @@ interface WebApi {
 
 ## 5. BaseApplication 
 The base application is integrated with Pluto Debugger.
-
-## 6. Easy State Collector 
-You can easily collect state inside Activity / Fragment / ViewModel by simply calling:
-```kotlin
-collect(state) { value ->
-    // Do something
-}
-```
-
-## 7. Kotlin Arrow
+## Kotlin Arrow
 Arrow provides functional programming pattern to your code.
-
-## 8. Gson
-
-## 9. LazyFunction
-Lazy function is similar to stateflow. The block of lazy function is lazily executed, it will ignore rapid invocation if it's still busy,
-but the last invocation will always be executed. But you also can force the function to invoke immediately by calling `someLazyFunction.forceInvoke(..)`.
-
-### Another
-- [Coroutine Util](docs/Coroutine.md)
-- [Permission Util](docs/Permission.md)
-- [State Collectors](docs/StateCollector.md)
-
+## Gson
+## [LazyFunction](docs/LazyFunction.md)
+## [Coroutine Util](docs/Coroutine.md)
+## [Permission Util](docs/Permission.md)
+## [State Collectors](docs/StateCollector.md)
 
 # Note
 Note that this example was made as simple as possible, so it is not recommended to follow the architecture.
