@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.devtools.ksp' version '1.8.0-1.0.8'
 }
 
 android {
@@ -61,6 +63,24 @@ dependencies {
 
     // GSON
     api "com.google.code.gson:gson:2.10.1"
+
+    // ROOM
+    api "androidx.room:room-runtime:2.5.2"
+    annotationProcessor "androidx.room:room-compiler:2.5.2"
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:2.5.2"
+    // To use Kotlin Symbol Processing (KSP)
+    ksp "androidx.room:room-compiler:2.5.2"
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    api "androidx.room:room-guava:2.5.2"
+
+    // optional - Test helpers
+    testApi "androidx.room:room-testing:2.5.2"
+
+    // optional - Paging 3 Integration
+    api "androidx.room:room-paging:2.5.2"
 
     // PLUTO
     debugApi 'com.plutolib:pluto:2.1.3'
