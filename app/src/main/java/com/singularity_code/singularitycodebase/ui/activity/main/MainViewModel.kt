@@ -4,14 +4,18 @@ import androidx.lifecycle.ViewModel
 import com.singularity_code.codebase.util.collect
 import com.singularity_code.codebase.util.lazyFunction
 import com.singularity_code.codebase.util.provider
-import com.singularity_code.singularitycodebase.data.SampleFactory
 import com.singularity_code.singularitycodebase.data.SampleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 
 class MainViewModel(
-    private val repository: SampleRepository = SampleFactory()
+    /**
+     * Note that im giving you example as simple as possible so it is less too you to get trough the mechanism;
+     * There fore the architecture might not be satisfying.
+     * But of course for the real world execution, i recommend you to use prefer architecture such Clean Architecture or such.
+     */
+    private val repository: SampleRepository = SampleRepository()
 ) : ViewModel() {
 
     /** Creating a Provider **/

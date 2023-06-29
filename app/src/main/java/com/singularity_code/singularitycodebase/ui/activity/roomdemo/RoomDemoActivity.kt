@@ -38,14 +38,11 @@ import kotlinx.coroutines.launch
 
 class RoomDemoActivity : ComponentActivity() {
 
-//    private val userDB by UserDb.db()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             SingularityCodebaseTheme {
-                // A surface container using the 'background' color from the theme
                 Screen()
             }
         }
@@ -68,7 +65,13 @@ fun Screen() {
 @Composable
 fun ColumnScope.UserList() {
 
+    /**
+     * Note that im giving you example as simple as possible so it is less too you to get trough the mechanism;
+     * There fore the architecture might not be satisfying.
+     * But of course for the real world execution, i recommend you to use prefer architecture such Clean Architecture or such.
+     */
     val db by db<Database>()
+
     val userList = remember {
         mutableStateOf(
             (1..10).map { User(it, "adn", "asdn") }
@@ -111,7 +114,14 @@ fun ColumnScope.UserList() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ColumnScope.AddUserForm() {
+
+    /**
+     * Note that im giving you example as simple as possible so it is less too you to get trough the mechanism;
+     * There fore the architecture might not be satisfying.
+     * But of course for the real world execution, i recommend you to use prefer architecture such Clean Architecture or such.
+     */
     val db by db<Database>()
+
     val firstName = remember {
         mutableStateOf("")
     }
