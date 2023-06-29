@@ -25,8 +25,6 @@ class SampleFactory : SampleRepository {
 
         return flow {
 
-            delay(5000)
-
             val result = runCatching {
                 sampleApi.getSampleData(
                     pld.queries

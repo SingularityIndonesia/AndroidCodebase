@@ -65,5 +65,6 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
-    api( project(path : ":codebase"))
+    // api( project(path : ":codebase"))
+    api "com.github.SingularityIndonesia:AndroidCodebase:1.4.1"
 }
