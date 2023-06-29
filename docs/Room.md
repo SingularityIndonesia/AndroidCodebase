@@ -1,5 +1,3 @@
-# Util (See [Room Util](../codebase/src/main/java/com/singularity_code/codebase/util/Room.kt))
-
 ## Preparation
 Fist all you need is declaring the application so it can be accessible to any classes.
 
@@ -64,3 +62,7 @@ create or bind database instance via single function :
 ```kotlin
 val db by db<MyDatabase>()
 ```
+
+## See: 
+- [Room Util](../codebase/src/main/java/com/singularity_code/codebase/util/Room.kt)
+- [SimpleDao Pattern](../codebase/src/main/java/com/singularity_code/codebase/pattern/SimpleDao.kt)
