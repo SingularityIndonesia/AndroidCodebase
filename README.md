@@ -18,9 +18,9 @@ dependencies {
 - [Pluto Debugger](https://androidpluto.com/)
 - [OkHttp](docs/OkHttp.md)
 - [Retrofit Util](docs/Retrofit.md)
-- BaseApplication 
+- [BaseApplication] (codebase/src/main/java/com/singularity_code/codebase/util/BaseApplication.kt).
   The base application is integrated with Pluto Debugger.
-- [Kotlin Arrow](https://arrow-kt.io/)
+- [Kotlin Arrow](https://arrow-kt.io/).
   Arrow provides functional programming pattern to your code.
 - [Gson](https://github.com/google/gson)
 - [LazyFunction](docs/LazyFunction.md)
