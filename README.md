@@ -18,7 +18,7 @@ dependencies {
 - [Pluto Debugger](https://androidpluto.com/)
 - [OkHttp](docs/OkHttp.md)
 - [Retrofit Util](docs/Retrofit.md)
-- [BaseApplication] (codebase/src/main/java/com/singularity_code/codebase/util/BaseApplication.kt).
+- [BaseApplication](codebase/src/main/java/com/singularity_code/codebase/util/BaseApplication.kt).
   The base application is integrated with Pluto Debugger.
 - [Kotlin Arrow](https://arrow-kt.io/).
   Arrow provides functional programming pattern to your code.
