@@ -10,6 +10,6 @@ import com.singularity_code.singularitycodebase.data.model.User
     version = 1,
     exportSchema = false
 )
-abstract class Database : RoomDatabase() {
+abstract class MyDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 }

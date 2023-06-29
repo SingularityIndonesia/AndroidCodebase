@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.singularity_code.codebase.util.db
-import com.singularity_code.singularitycodebase.data.db.Database
+import com.singularity_code.singularitycodebase.data.db.MyDatabase
 import com.singularity_code.singularitycodebase.data.model.User
 import com.singularity_code.singularitycodebase.util.theme.SingularityCodebaseTheme
 import kotlinx.coroutines.CoroutineScope
@@ -70,7 +70,7 @@ fun ColumnScope.UserList() {
      * There fore the architecture might not be satisfying.
      * But of course for the real world execution, i recommend you to use prefer architecture such Clean Architecture or such.
      */
-    val db by db<Database>()
+    val db by db<MyDatabase>()
 
     val userList = remember {
         mutableStateOf(
@@ -120,7 +120,7 @@ fun ColumnScope.AddUserForm() {
      * There fore the architecture might not be satisfying.
      * But of course for the real world execution, i recommend you to use prefer architecture such Clean Architecture or such.
      */
-    val db by db<Database>()
+    val db by db<MyDatabase>()
 
     val firstName = remember {
         mutableStateOf("")
