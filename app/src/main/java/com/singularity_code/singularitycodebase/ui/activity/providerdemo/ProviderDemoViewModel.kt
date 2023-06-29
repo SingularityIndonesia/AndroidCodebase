@@ -1,4 +1,4 @@
-package com.singularity_code.singularitycodebase.ui.activity.main
+package com.singularity_code.singularitycodebase.ui.activity.providerdemo
 
 import androidx.lifecycle.ViewModel
 import com.singularity_code.codebase.util.collect
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 
-class MainViewModel(
+class ProviderDemoViewModel(
     /**
      * Note that im giving you example as simple as possible so it is less too you to get trough the mechanism;
      * There fore the architecture might not be satisfying.
