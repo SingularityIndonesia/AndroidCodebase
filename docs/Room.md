@@ -32,6 +32,8 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 }
 
+
+
 /** the SimpleDao pattern provides you some basic database functional such insert and delete **/
 @Dao
 interface UserDao : SimpleDao<User> {
