@@ -66,6 +66,7 @@ dependencies {
 
     // ROOM
     api "androidx.room:room-runtime:2.5.2"
+    api 'androidx.room:room-common:2.5.2'
     annotationProcessor "androidx.room:room-compiler:2.5.2"
 
     // To use Kotlin annotation processing tool (kapt)
