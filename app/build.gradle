@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp' version '1.7.20-1.0.8'
 }
 
 android {
@@ -44,6 +45,8 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+
 }
 
 dependencies {
@@ -64,6 +67,23 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    // ROOM
+    api "androidx.room:room-runtime:2.5.2"
+    api 'androidx.room:room-common:2.5.2'
+    annotationProcessor "androidx.room:room-compiler:2.5.2"
+
+    // To use Kotlin Symbol Processing (KSP)
+    ksp "androidx.room:room-compiler:2.5.2"
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    api "androidx.room:room-guava:2.5.2"
+
+    // optional - Test helpers
+    testApi "androidx.room:room-testing:2.5.2"
+
+    // optional - Paging 3 Integration
+    api "androidx.room:room-paging:2.5.2"
 
     api(project(path: ":codebase"))
     // api "com.github.SingularityIndonesia:AndroidCodebase:1.4.1"

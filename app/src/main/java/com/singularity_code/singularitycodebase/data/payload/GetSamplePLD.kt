@@ -1,4 +1,4 @@
-package com.singularity_code.singularitycodebase.domain.payload
+package com.singularity_code.singularitycodebase.data.payload
 
 import com.singularity_code.codebase.pattern.Payload
 import com.singularity_code.codebase.util.QueryMap

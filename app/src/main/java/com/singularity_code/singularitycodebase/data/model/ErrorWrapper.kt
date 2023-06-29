@@ -1,4 +1,4 @@
-package com.singularity_code.singularitycodebase.data.exclusive
+package com.singularity_code.singularitycodebase.data.model
 
 import com.google.gson.annotations.SerializedName
 

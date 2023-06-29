@@ -1,4 +1,4 @@
-package com.singularity_code.singularitycodebase.ui.theme
+package com.singularity_code.singularitycodebase.util.theme
 
 import androidx.compose.ui.graphics.Color
 

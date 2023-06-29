@@ -1,4 +1,4 @@
-package com.singularity_code.singularitycodebase
+package com.singularity_code.singularitycodebase.ui.activity.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,16 +12,14 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.singularity_code.codebase.CODE_BASE
-import com.singularity_code.singularitycodebase.domain.payload.GetSamplePLD
-import com.singularity_code.singularitycodebase.ui.theme.SingularityCodebaseTheme
+import com.singularity_code.singularitycodebase.data.payload.GetSamplePLD
+import com.singularity_code.singularitycodebase.ui.activity.main.MainViewModel
+import com.singularity_code.singularitycodebase.util.theme.SingularityCodebaseTheme
 
 class MainActivity : ComponentActivity() {
 

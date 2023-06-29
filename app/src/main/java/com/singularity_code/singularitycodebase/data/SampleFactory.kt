@@ -4,10 +4,9 @@ import arrow.core.Either
 import com.singularity_code.codebase.util.ErrorMessage
 import com.singularity_code.codebase.util.createHttpClient
 import com.singularity_code.codebase.util.retrofitService
-import com.singularity_code.singularitycodebase.domain.model.SampleResult
-import com.singularity_code.singularitycodebase.domain.payload.GetSamplePLD
-import com.singularity_code.singularitycodebase.domain.repo.SampleRepository
-import kotlinx.coroutines.delay
+import com.singularity_code.singularitycodebase.data.model.SampleResult
+import com.singularity_code.singularitycodebase.data.payload.GetSamplePLD
+import com.singularity_code.singularitycodebase.data.web.SampleApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

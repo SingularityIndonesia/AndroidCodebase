@@ -1,11 +1,11 @@
-package com.singularity_code.singularitycodebase
+package com.singularity_code.singularitycodebase.ui.activity.main
 
 import androidx.lifecycle.ViewModel
 import com.singularity_code.codebase.util.collect
 import com.singularity_code.codebase.util.lazyFunction
 import com.singularity_code.codebase.util.provider
 import com.singularity_code.singularitycodebase.data.SampleFactory
-import com.singularity_code.singularitycodebase.domain.repo.SampleRepository
+import com.singularity_code.singularitycodebase.data.SampleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first

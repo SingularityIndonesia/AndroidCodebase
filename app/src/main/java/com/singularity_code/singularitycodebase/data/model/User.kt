@@ -1,4 +1,4 @@
-package com.singularity_code.singularitycodebase.domain.model
+package com.singularity_code.singularitycodebase.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

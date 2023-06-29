@@ -1,8 +1,8 @@
-package com.singularity_code.singularitycodebase.data
+package com.singularity_code.singularitycodebase.data.web
 
 import arrow.retrofit.adapter.either.ResponseE
-import com.singularity_code.singularitycodebase.data.exclusive.ErrorWrapper
-import com.singularity_code.singularitycodebase.domain.model.SampleResult
+import com.singularity_code.singularitycodebase.data.model.ErrorWrapper
+import com.singularity_code.singularitycodebase.data.model.SampleResult
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
 
