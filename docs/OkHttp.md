@@ -15,3 +15,5 @@ val okHttpClient by httpClient(
     )
 )
 ```
+
+See: [OkHttp Util](../codebase/src/main/java/com/singularity_code/codebase/util/OkHttp.kt)
