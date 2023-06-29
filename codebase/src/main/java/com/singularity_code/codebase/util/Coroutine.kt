@@ -1,16 +1,33 @@
 package com.singularity_code.codebase.util
 
+import android.app.Activity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
+/** # Activity **/
+val Activity.ViewScope get() = MainScope()
+fun Activity.viewJob(block: suspend () -> Unit): Job =
+    ViewScope.launch {
+        block.invoke()
+    }
+
+/** # Fragment **/
+val Fragment.ViewScope get() = viewLifecycleOwner.lifecycleScope
+fun Fragment.viewJob(
+    block: suspend () -> Unit
+) = ViewScope.launch {
+    block.invoke()
+}
+
+/** # ViewModel **/
 fun ViewModel.viewModelJob(
     superVisorJob: CompletableJob = SupervisorJob(),
     block: suspend CoroutineScope.() -> Unit
@@ -20,23 +37,4 @@ fun ViewModel.viewModelJob(
     ) {
         block.invoke(this)
     }
-}
-
-fun <T> ViewModel.collect(
-    state: Flow<T>,
-    block: suspend (T) -> Unit
-): Job = viewModelJob {
-    state.collect {
-        block.invoke(it)
-    }
-}
-
-/** this will collect every state even though the state is the same as it previous state **/
-fun <T> ViewModel.collectEach(
-    state: Flow<T>,
-    block: suspend (T) -> Unit
-): Job = viewModelJob {
-    state.onEach {
-        block.invoke(it)
-    }.collect()
 }
