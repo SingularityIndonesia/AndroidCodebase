@@ -37,25 +37,34 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column {
+                    Column(Modifier.padding(16.dp)) {
 
                         Spacer(modifier = Modifier.weight(1f))
-                        Button(onClick = {
-                            startActivity(
-                                Intent(this@MainActivity, ProviderDemoActivity::class.java)
-                            )
-                        }) {
+
+                        Button(
+                            onClick = {
+                                startActivity(
+                                    Intent(this@MainActivity, ProviderDemoActivity::class.java)
+                                )
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Text(text = "Provider Demo")
                         }
+
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        Button(onClick = {
-                            startActivity(
-                                Intent(this@MainActivity, RoomDemoActivity::class.java)
-                            )
-                        }) {
+                        Button(
+                            onClick = {
+                                startActivity(
+                                    Intent(this@MainActivity, RoomDemoActivity::class.java)
+                                )
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Text(text = "Room Database Demo")
                         }
+
                         Spacer(modifier = Modifier.weight(1f))
                     }
 
