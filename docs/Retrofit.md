@@ -24,3 +24,5 @@ val apiService by retrofitService(
     baseUrl = "http://..."
 )
 ```
+
+See : [Retrofit Util](../codebase/src/main/java/com/singularity_code/codebase/util/Retrofit.kt)
