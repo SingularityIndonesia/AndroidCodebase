@@ -13,7 +13,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.SingularityIndonesia:AndroidCodebase:1.5.0'
+    implementation 'com.github.SingularityIndonesia:AndroidCodebase:1.6.0'
 }
 ```
 
