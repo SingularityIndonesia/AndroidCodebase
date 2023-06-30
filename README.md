@@ -32,7 +32,8 @@ dependencies {
 - [Permission Util](docs/Permission.md)
 - [State Collectors](docs/StateCollector.md)
 - [Room Database Util](docs/Room.md)
-
+- [Biometric Util](docs/Biometric.md)
+- 
 # Note
 Note that this example was made as simple as possible, so it is not recommended to follow the architecture.
 
