@@ -2,6 +2,7 @@ package com.singularity_code.singularitycodebase.ui.activity.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -14,15 +15,11 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.singularity_code.singularitycodebase.data.payload.GetSamplePLD
 import com.singularity_code.singularitycodebase.ui.activity.biometricdemo.BiometricActivity
+import com.singularity_code.singularitycodebase.ui.activity.encryptedroom.EncryptedRoom
 import com.singularity_code.singularitycodebase.ui.activity.providerdemo.ProviderDemoActivity
-import com.singularity_code.singularitycodebase.ui.activity.providerdemo.ProviderDemoViewModel
 import com.singularity_code.singularitycodebase.ui.activity.roomdemo.RoomDemoActivity
 import com.singularity_code.singularitycodebase.util.theme.SingularityCodebaseTheme
 
@@ -64,6 +61,19 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text(text = "Room Database Demo")
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(
+                            onClick = {
+                                startActivity(
+                                    Intent(this@MainActivity, EncryptedRoom::class.java)
+                                )
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(text = "Encrypted Room Database Demo")
                         }
 
                         Spacer(modifier = Modifier.height(16.dp))
