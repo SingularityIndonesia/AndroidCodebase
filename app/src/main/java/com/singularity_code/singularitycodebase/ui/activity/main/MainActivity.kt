@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.singularity_code.singularitycodebase.data.payload.GetSamplePLD
+import com.singularity_code.singularitycodebase.ui.activity.biometricdemo.BiometricActivity
 import com.singularity_code.singularitycodebase.ui.activity.providerdemo.ProviderDemoActivity
 import com.singularity_code.singularitycodebase.ui.activity.providerdemo.ProviderDemoViewModel
 import com.singularity_code.singularitycodebase.ui.activity.roomdemo.RoomDemoActivity
@@ -63,6 +64,19 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text(text = "Room Database Demo")
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(
+                            onClick = {
+                                startActivity(
+                                    Intent(this@MainActivity, BiometricActivity::class.java)
+                                )
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(text = "Biometric Demo")
                         }
 
                         Spacer(modifier = Modifier.weight(1f))
