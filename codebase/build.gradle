@@ -103,4 +103,7 @@ dependencies {
 
     // SQL Cipher
     api 'net.zetetic:android-database-sqlcipher:4.5.3'
+
+    // Multidex
+    api "androidx.multidex:multidex:2.0.1"
 }

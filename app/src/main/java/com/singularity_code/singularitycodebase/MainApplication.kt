@@ -1,21 +1,11 @@
 package com.singularity_code.singularitycodebase
 
-import android.app.Application
-import android.content.Context
-import com.singularity_code.codebase.util.declareApplicationContext
-import com.singularity_code.codebase.util.preparePluto
+import com.singularity_code.codebase.SingularityApp
 
-class MainApplication : Application() {
-
-    override fun attachBaseContext(
-        base: Context?
-    ) {
-        super.attachBaseContext(base)
-        declareApplicationContext()
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        preparePluto()
-    }
+class MainApplication : SingularityApp() {
+    override val enabledFeature: List<Feature> =
+        listOf(
+            Feature.PLUTO_DEBUGGER,
+            Feature.MULTI_DEX
+        )
 }
