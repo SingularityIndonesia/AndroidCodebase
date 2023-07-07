@@ -20,25 +20,26 @@ open class SingularityApp : Application() {
 
     open val enabledFeature: List<Feature> = listOf()
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        declareApplicationContext()
+    }
+
     override fun onCreate() {
         super.onCreate()
-
+        initMultiDex()
         initPluto()
+    }
+
+    private fun initMultiDex() {
+        if (enabledFeature.contains(Feature.MULTI_DEX))
+            MultiDex.install(this)
     }
 
     private fun initPluto() {
         if (enabledFeature.contains(Feature.PLUTO_DEBUGGER)) {
             preparePluto()
         }
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        declareApplicationContext()
-
-        /** multidex **/
-        if (enabledFeature.contains(Feature.MULTI_DEX))
-            MultiDex.install(this)
     }
 
 }
