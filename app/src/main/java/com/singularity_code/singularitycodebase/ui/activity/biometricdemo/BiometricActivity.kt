@@ -10,13 +10,14 @@ import com.singularity_code.codebase.util.promptBiometricInput
 class BiometricActivity : FragmentActivity() {
 
     companion object {
-        const val BIOMETRIC_ENROLL_REQUEST = 100
+        const val BIOMETRIC_ENROLL_REQUEST_CODE = 100
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        autoEnrollBiometric(BIOMETRIC_ENROLL_REQUEST)
+        autoEnrollBiometric(BIOMETRIC_ENROLL_REQUEST_CODE)
+
         if (biometricIsAvailable.first) {
             promptBiometricInput(
                 negativeButtonText = "Use Password Instead",
