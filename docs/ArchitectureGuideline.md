@@ -1,12 +1,13 @@
 # MVI + State Automation
+Designed by [Stefanus Ayudha](https://github.com/stefanusayudha)
 
-Model hold the UI State
+## Model hold the UI State
 ```mermaid
 graph LR
 A[Cars] --> B[CarDisplay] --> C{{Presentation}}
 ```
 
-Use Automated State
+## Use Automated State
 ```mermaid
 graph LR
 A[List of Cars] --> B[[Automated State: List of Car Display]]
@@ -14,7 +15,7 @@ C[Selected Card ID] --> B
 B --> D{{Presentation}}
 ```
 
-Example
+## Example
 ```kotlin
 data class Car(
     val id: String
