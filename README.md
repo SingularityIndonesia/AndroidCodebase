@@ -75,7 +75,7 @@ We recomend you to use the MVVM+MVI together with State Automation Pattern like 
 By following that pattern you will no longer need to fight with spagetty flow and overlapping side effects. This pattern is exclusively being part of this codebase design.
 But be ware that MVI can be pretty slow in big data processing and in case you need more speed we recommend you to use pure but limitted MVVM pattern.
 
-The no abstraction idea maybe debate-able, but think of scalling. We are recomend using `Group Theory` to drive your code pattern, and think of `Category` theory as scale up; Or you can say: Start from pattern to Inheritance. We never find cases that hardly depend on Inheritance, or cases where Pattern is not enough, rather most of the time we found that Layers and Inheritance are bottlenecks and mostly a problem.
+The no abstraction idea maybe debate-able, but think of scalling. We are recomend using `Group Theory` to drive your code pattern, and think of `Category` theory as scale up; Or you can say: Start from pattern to Inheritance. We never find cases that hardly depend on Inheritance, or cases where Pattern is not enough, rather most of the time we found that Layers and Inheritance are bottlenecks and mostly a problem, and lack of pattern is a big problem.
 
 # Author
 Feel free to chat with me: [Stefanus Ayudha](https://github.com/stefanusayudha)
