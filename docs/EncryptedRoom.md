@@ -1,22 +1,3 @@
-## Preparation
-Fist all you need is declaring the application so it can be accessible to any classes.
-
-Inside your Application class:
-```kotlin
-class MainApplication : Application() {
-    
-    override fun attachBaseContext(
-        base: Context?
-    ) {
-        super.attachBaseContext(base)
-        
-        /** declare application context **/
-        declareApplicationContext()
-    }
-    
-}
-```
-
 ## Creating Database
 Create database class and the dao like the following:
 
