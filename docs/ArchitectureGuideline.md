@@ -33,8 +33,11 @@ class MViewModel(
     val selectedCarId: Flow<String>
 
     val carListDisplay by lazy {
+
+        /** internal private flow **/
         val flow = MutableStateFlow(listOf<CarDisplay>())
 
+        /** updater **/
         val updater = lazyFunction {
             val currentList = carListProvider.success.second ?: listOf<Car>()
             val selectedId = selectedCarId.first()
