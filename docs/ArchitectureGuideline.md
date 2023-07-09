@@ -77,4 +77,4 @@ class MViewModel(
 }
 ```
 
-Now you can observe the car list display and just render it. No Side effect, No code Diversity.
+Now you can observe the car list display and just render it. No Side effect, Less code Diversity.
