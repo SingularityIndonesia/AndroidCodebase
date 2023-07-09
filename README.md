@@ -65,6 +65,9 @@ class MainApplication : Application() {
 - [Encrypted Room Database](docs/EncryptedRoom.md)
 - [Biometric Util](docs/Biometric.md)
 
+# Architecture Guideline
+See : [Architecture Guideline](docs/ArchitectureGuideline.md)
+
 # Note
 Note that this example was made as simple as possible, so it is not recommended to follow the architecture.
 
