@@ -1,5 +1,5 @@
 # Singularity Codebase
-This is the code base that we develop to help everyone in creating android apps.
+This is the code base that we develop to help everyone to create android apps.
 This codebase provides tools that is necessary to use in android development process.
 This codebase is free to use and distribute under MIT licence.
 
