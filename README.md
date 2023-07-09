@@ -3,6 +3,13 @@ This is the code base that we develop to help everyone in creating android apps.
 This codebase provides tools that is necessary to use in android development process.
 This codebase is free to use and distribute under MIT licence.
 
+# Why Using Singularity Codebase
+- No Abstraction (Every body hates abstraction).
+- Everything function. We provide functions not classes to simplify. Don't bother to make classes.
+- Everything lazy. We provide builder functions as lazy, so you can use it with `by` keywords and initiate it lazily.
+- Builder Pattern and Strategy Pattern (every body loves them).
+- We are targeting MVI and state automation with minimum lines of codes. You can still using MVVM and it's hightly recomended to combine it with MVI to get the maximum benefit.
+
 # Implementation
 ```groovy
 allprojects {
@@ -14,6 +21,22 @@ allprojects {
 
 dependencies {
     implementation 'com.github.SingularityIndonesia:AndroidCodebase:1.7.0'
+}
+```
+
+# Initialization
+```kotlin
+class MainApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        Singularity
+            .Init(this)
+            .EnableFeature(
+                Singularity.Feature.PLUTO_DEBUGGER,
+                Singularity.Feature.MULTI_DEX
+            )
+    }
 }
 ```
 
