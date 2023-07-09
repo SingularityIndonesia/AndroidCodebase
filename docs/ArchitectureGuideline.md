@@ -39,7 +39,7 @@ class MViewModel(
 
         /** updater **/
         val updater = lazyFunction {
-            val currentList = carListProvider.success.second ?: listOf<Car>()
+            val currentList = carListProvider.success.first().second ?: listOf<Car>()
             val selectedId = selectedCarId.first()
 
             val carListDisplay = currentList
