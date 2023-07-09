@@ -69,13 +69,15 @@ class MainApplication : Application() {
 See : [Architecture Guideline](docs/ArchitectureGuideline.md)
 
 # Note
-Note that this example was made as simple as possible, so it is not recommended to follow the architecture.
+Note that this example was made as simple as possible, so it is not recommended to follow the architecture of the given sample and read the notes.
 
 We recomend you to use the MVVM+MVI together with State Automation Pattern like the example [here](app/src/main/java/com/singularity_code/singularitycodebase/ui/activity/providerdemo/ProviderDemoViewModel.kt), to reduce code diversity and eliminate side effects.
 By following that pattern you will no longer need to fight with spagetty flow and overlapping side effects. This pattern is exclusively being part of this codebase design.
-But be ware that MVI can be pretty slow in big data processing and in case you need more speed we recommend you to use pure but limitted MVVM patter
+But be ware that MVI can be pretty slow in big data processing and in case you need more speed we recommend you to use pure but limitted MVVM pattern.
+
+The no abstraction idea maybe debate-able, but think of scalling. We are recomend using `Group Theory` to drive your code pattern, and think of `Category` theory as scale up; Or you can say: Start from pattern to Inheritance. We never find cases that hardly depend on Inheritance, or cases where Pattern is not enough, rather most of the time we found that Layers and Inheritance are bottlenecks and mostly a problem.
 
 # Author
-[Stefanus Ayudha](https://github.com/stefanusayudha)
+Feel free to chat with me: [Stefanus Ayudha](https://github.com/stefanusayudha)
 
 # Keep It Simple Stupid
