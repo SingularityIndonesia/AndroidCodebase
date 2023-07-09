@@ -31,7 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
-import com.singularity_code.codebase.util.applicationContext
+import com.singularity_code.codebase.util.Singularity
 import com.singularity_code.codebase.util.encryptedDb
 import com.singularity_code.codebase.util.getSimCardInformation
 import com.singularity_code.codebase.util.hasPermissions
@@ -49,7 +49,7 @@ class EncryptedRoom : ComponentActivity() {
     companion object {
         val DB_PASSWORD
             @RequiresApi(Build.VERSION_CODES.Q)
-            get() = applicationContext.applicationContext.getSimCardInformation
+            get() = Singularity.application.getSimCardInformation
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)

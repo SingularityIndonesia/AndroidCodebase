@@ -1,11 +1,19 @@
 package com.singularity_code.singularitycodebase
 
-import com.singularity_code.codebase.SingularityApp
+import android.app.Application
+import com.pluto.Pluto
+import com.singularity_code.codebase.util.Singularity
+import com.singularity_code.codebase.util.preparePluto
 
-class MainApplication : SingularityApp() {
-    override val enabledFeature: List<Feature> =
-        listOf(
-            Feature.PLUTO_DEBUGGER,
-            Feature.MULTI_DEX
-        )
+class MainApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        Singularity
+            .Init(this)
+            .EnableFeature(
+                Singularity.Feature.PLUTO_DEBUGGER,
+                Singularity.Feature.MULTI_DEX
+            )
+    }
 }
