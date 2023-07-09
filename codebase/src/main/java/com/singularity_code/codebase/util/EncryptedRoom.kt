@@ -14,7 +14,7 @@ inline fun <reified D : RoomDatabase> encryptedDb(
     val factory = SupportFactory(passphrase)
 
     Room.databaseBuilder(
-        context = applicationContext,
+        context = Singularity.application,
         klass = D::class.java,
         name = D::class.simpleName
     ).openHelperFactory(factory)
