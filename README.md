@@ -3,21 +3,6 @@ This is the code base that we develop to help everyone to create android apps.
 This codebase provides tools that is necessary to use in android development process.
 This codebase is free to use and distribute under MIT licence.
 
-# Why Using Singularity Codebase
-- No Abstraction (Every body hates abstraction).
-- Everything function. We provide functions not classes to simplify. Don't bother to make classes.
-- Everything lazy. We provide builder functions as lazy, so you can use it with `by` keywords and initiate it lazily.
-- Builder Pattern and Strategy Pattern (every body loves them).
-- We are targeting MVI and state automation with minimum lines of codes. You can still using MVVM and it's hightly recomended to combine it with MVI to get the maximum benefit.
-
-# The Thinking Framework
-- Everything have pattern
-- Pattern can have ``private implementation`` such abstraction but the abstraction shall not be declare as public. 
-  This idea is to stop people for making unecessary layers and make things more complex.
-- Every pattern should have builder function. So instead of using Pattern + Implemented class, we recommend to do Pattern + builder function.
-- State should be automated. This idea is to get rid of side effects.
-- Use State Automation Pattern. By automating the state, you will be free of side effect, and by using same pattern you will reduce code Diversity.
-- Note : This is not rule, rather a thinking framework; Pattern + Builder, No Abstraction, State Automation, everthing Lazy, Builder Pattern and Strategy Pattern.
 
 # Implementation
 ```groovy
