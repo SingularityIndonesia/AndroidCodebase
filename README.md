@@ -80,4 +80,7 @@ The no abstraction idea maybe debate-able, but think of scalling. We are recomen
 # Author
 Feel free to chat with me: [Stefanus Ayudha](https://github.com/stefanusayudha)
 
-# Keep It Simple Stupid
+# Currently Powered by Singularity
+<p float="left">
+<img src="https://github.com/SingularityIndonesia/AndroidCodebase/blob/main/docs/image/Logo64.png" width="64" alt="5T Salesman Tracker">
+</p>
