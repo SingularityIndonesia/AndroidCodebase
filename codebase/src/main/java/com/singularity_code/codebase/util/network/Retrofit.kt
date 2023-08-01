@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.network
 
 import androidx.annotation.NonNull
 import arrow.retrofit.adapter.either.EitherCallAdapterFactory

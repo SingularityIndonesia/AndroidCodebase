@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.flow
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel

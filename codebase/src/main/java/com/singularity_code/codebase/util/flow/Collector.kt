@@ -1,14 +1,11 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.flow
 
 import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 /** # Activity **/
 fun <T> Activity.collect(

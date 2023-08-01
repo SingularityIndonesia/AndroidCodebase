@@ -1,7 +1,7 @@
 package com.singularity_code.singularitycodebase.data.payload
 
 import com.singularity_code.codebase.pattern.Payload
-import com.singularity_code.codebase.util.QueryMap
+import com.singularity_code.codebase.util.serialization.QueryMap
 
 data class GetSamplePLD(
     val credential: String

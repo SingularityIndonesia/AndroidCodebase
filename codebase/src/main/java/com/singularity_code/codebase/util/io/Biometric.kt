@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.io
 
 import android.content.Intent
 import android.os.Build
@@ -12,6 +12,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.singularity_code.codebase.util.serialization.ErrorCode
 import timber.log.Timber
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException
@@ -21,7 +22,6 @@ import java.security.NoSuchProviderException
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.NoSuchPaddingException
-import javax.crypto.SecretKey
 
 
 private fun biometricIsAvailable(

@@ -27,7 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.singularity_code.codebase.util.db
+import com.singularity_code.codebase.util.io.room.db
 import com.singularity_code.singularitycodebase.data.db.MyDatabase
 import com.singularity_code.singularitycodebase.data.model.User
 import com.singularity_code.singularitycodebase.util.theme.SingularityCodebaseTheme

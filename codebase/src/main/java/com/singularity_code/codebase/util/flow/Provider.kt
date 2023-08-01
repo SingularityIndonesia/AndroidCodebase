@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.flow
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -7,6 +7,11 @@ import arrow.core.Either
 import com.singularity_code.codebase.pattern.Payload
 import com.singularity_code.codebase.pattern.Provider
 import com.singularity_code.codebase.pattern.VMData
+import com.singularity_code.codebase.util.serialization.ErrorMessage
+import com.singularity_code.codebase.util.serialization.default
+import com.singularity_code.codebase.util.serialization.failed
+import com.singularity_code.codebase.util.serialization.loading
+import com.singularity_code.codebase.util.serialization.success
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
