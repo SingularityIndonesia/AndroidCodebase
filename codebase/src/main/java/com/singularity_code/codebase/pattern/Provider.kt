@@ -1,7 +1,7 @@
 package com.singularity_code.codebase.pattern
 
 import arrow.core.Either
-import com.singularity_code.codebase.util.ErrorMessage
+import com.singularity_code.codebase.util.serialization.ErrorMessage
 import kotlinx.coroutines.flow.Flow
 
 interface Provider<P : Payload, D : Any> {

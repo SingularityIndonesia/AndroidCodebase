@@ -40,6 +40,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    // MATERIAL 3
+    implementation 'androidx.compose.material3:material3:1.2.0-alpha04'
+
     // OKHTTP
     implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.9"
 
@@ -79,6 +82,16 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:2.5.2"
+
+    // MAP
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+    // ACCOMPANIST
+    implementation "com.google.accompanist:accompanist-permissions:0.23.1"
+
+    // CHUCKER
+    debugImplementation "com.github.chuckerteam.chucker:library:4.0.0"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:4.0.0"
 
     // PLUTO
     debugImplementation 'com.plutolib:pluto:2.1.3'

@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.debug.pluto
 
 import android.app.Application
 import com.pluto.Pluto

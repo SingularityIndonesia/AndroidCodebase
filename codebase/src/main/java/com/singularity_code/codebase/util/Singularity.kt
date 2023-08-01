@@ -2,6 +2,7 @@ package com.singularity_code.codebase.util
 
 import android.app.Application
 import androidx.multidex.MultiDex
+import com.singularity_code.codebase.util.debug.pluto.preparePluto
 
 
 object Singularity {

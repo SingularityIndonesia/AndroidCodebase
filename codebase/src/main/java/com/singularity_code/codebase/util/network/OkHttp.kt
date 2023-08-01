@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.network
 
 import com.pluto.plugins.network.PlutoInterceptor
 import okhttp3.Interceptor

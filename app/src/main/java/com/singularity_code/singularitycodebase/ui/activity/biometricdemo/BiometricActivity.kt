@@ -3,9 +3,9 @@ package com.singularity_code.singularitycodebase.ui.activity.biometricdemo
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.pluto.utilities.extensions.toast
-import com.singularity_code.codebase.util.autoEnrollBiometric
-import com.singularity_code.codebase.util.biometricIsAvailable
-import com.singularity_code.codebase.util.promptBiometricInput
+import com.singularity_code.codebase.util.io.autoEnrollBiometric
+import com.singularity_code.codebase.util.io.biometricIsAvailable
+import com.singularity_code.codebase.util.io.promptBiometricInput
 
 class BiometricActivity : FragmentActivity() {
 

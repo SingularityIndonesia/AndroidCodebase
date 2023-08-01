@@ -1,9 +1,9 @@
 package com.singularity_code.singularitycodebase.ui.activity.providerdemo
 
 import androidx.lifecycle.ViewModel
-import com.singularity_code.codebase.util.collect
-import com.singularity_code.codebase.util.lazyFunction
-import com.singularity_code.codebase.util.provider
+import com.singularity_code.codebase.util.flow.collect
+import com.singularity_code.codebase.util.flow.lazyFunction
+import com.singularity_code.codebase.util.flow.provider
 import com.singularity_code.singularitycodebase.data.SampleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

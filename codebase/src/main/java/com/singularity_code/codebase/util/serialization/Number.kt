@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.serialization
 
 typealias Percent = Float
 

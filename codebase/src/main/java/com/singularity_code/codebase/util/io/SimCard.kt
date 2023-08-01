@@ -1,4 +1,4 @@
-package com.singularity_code.codebase.util
+package com.singularity_code.codebase.util.io
 
 import android.content.Context
 import android.os.Build
