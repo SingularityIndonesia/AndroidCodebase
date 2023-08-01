@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.singularity_code.codebase'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         minSdk 24
@@ -85,6 +85,9 @@ dependencies {
 
     // MAP
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+    // LOCATION
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 
     // ACCOMPANIST
     implementation "com.google.accompanist:accompanist-permissions:0.23.1"
