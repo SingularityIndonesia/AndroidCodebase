@@ -2,7 +2,6 @@ package com.singularity_code.singularitycodebase.ui.activity.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -17,13 +16,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.pluto.plugins.exceptions.PlutoExceptions
 import com.singularity_code.singularitycodebase.ui.activity.biometricdemo.BiometricActivity
 import com.singularity_code.singularitycodebase.ui.activity.encryptedroom.EncryptedRoom
 import com.singularity_code.singularitycodebase.ui.activity.providerdemo.ProviderDemoActivity
 import com.singularity_code.singularitycodebase.ui.activity.roomdemo.RoomDemoActivity
 import com.singularity_code.singularitycodebase.util.theme.SingularityCodebaseTheme
-import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
 

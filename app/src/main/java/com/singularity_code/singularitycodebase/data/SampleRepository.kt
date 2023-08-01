@@ -1,9 +1,9 @@
 package com.singularity_code.singularitycodebase.data
 
 import arrow.core.Either
-import com.singularity_code.codebase.util.serialization.ErrorMessage
 import com.singularity_code.codebase.util.network.createHttpClient
 import com.singularity_code.codebase.util.network.retrofitService
+import com.singularity_code.codebase.util.serialization.ErrorMessage
 import com.singularity_code.singularitycodebase.data.model.SampleResult
 import com.singularity_code.singularitycodebase.data.payload.GetSamplePLD
 import com.singularity_code.singularitycodebase.data.web.SampleApi

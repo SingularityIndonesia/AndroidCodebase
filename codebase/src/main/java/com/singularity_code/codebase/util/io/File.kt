@@ -10,7 +10,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 
 fun Context.createImageFileJPG(): File {
