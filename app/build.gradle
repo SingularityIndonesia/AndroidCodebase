@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.singularity_code.singularitycodebase'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.singularity_code.singularitycodebase"
