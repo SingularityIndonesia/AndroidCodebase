@@ -1,6 +1,11 @@
 # Singularity Codebase
 This is the code base that we develop to help everyone to create android apps.
-This codebase provides tools that is necessary to use in android development process.
+This codebase provides collection of tools that is necessary to use in android development process.
+This codebase is "abstraction free", provide you non-strict pattern and rules.
+This codebase focus on tools that is essentials.
+This codebase not overriding super method; This means that we are not making "new method" to call the same effects;
+While this have some downside, in dependency implementation, our purpose is to reduce learning curve.
+Everything is about Pattern, Builder, and Strategy.
 This codebase is free to use and distribute under MIT licence.
 
 
