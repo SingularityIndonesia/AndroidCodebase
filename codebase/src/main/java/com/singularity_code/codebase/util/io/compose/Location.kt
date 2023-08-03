@@ -17,6 +17,8 @@ import com.google.android.gms.location.LocationServices
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun GetLocation(
+    interval: Long = 10000,
+    fastestInterval: Long = 5000,
     onLocationResult: (LocationResult) -> Unit
 ) {
     val activity = LocalContext.current as? Activity
@@ -28,24 +30,23 @@ fun GetLocation(
             override fun onLocationResult(p0: LocationResult) {
                 onLocationResult.invoke(p0)
             }
-        }.also {
-            val locationRequest = LocationRequest.create().apply {
-                interval = 10000
-                fastestInterval = 5000
-                priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            }
-
-            if (!permissionState.hasPermission)
-                activity.requestPermissions(
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    100
-                )
-            else
-                fusedLocationClient.requestLocationUpdates(
-                    locationRequest,
-                    it,
-                    Looper.getMainLooper()
-                )
         }
+        val locationRequest = LocationRequest.create().apply {
+            this.interval = interval
+            this.fastestInterval = fastestInterval
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+
+        if (!permissionState.hasPermission)
+            activity.requestPermissions(
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                100
+            )
+        else
+            fusedLocationClient.requestLocationUpdates(
+                locationRequest,
+                locationCallback,
+                Looper.getMainLooper()
+            )
     }
 }
