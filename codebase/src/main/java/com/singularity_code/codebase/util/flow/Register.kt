@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.singularity_code.codebase.pattern.Register
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -13,7 +14,7 @@ fun <T> ViewModel.register(
 ): Lazy<Register<T>> = lazy {
     object : Register<T> {
 
-        private val _data = MutableStateFlow<T>(default)
+        private val _data = MutableSharedFlow<T>(1)
 
         override val data: Flow<T>
             get() = _data
@@ -22,6 +23,10 @@ fun <T> ViewModel.register(
             viewModelScope.launch {
                 _data.emit(data)
             }
+        }
+
+        init {
+            set(default)
         }
     }
 }
