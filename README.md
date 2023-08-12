@@ -8,6 +8,28 @@ While this have some downside, in dependency implementation, our purpose is to r
 Everything is about Pattern, Builder, and Strategy.
 This codebase is free to use and distribute under MIT licence.
 
+# Tactical Codebase
+What makes this codebase so powerfull is, that this codebase is tactical. We are using strategy pattern to enable or disable feature on demand. Even changing plugin version on the fly.
+This concept make it possible to upgrade the codebase without doing refactor. Bugfix or backward incompatible feature will be released as new module, and can be enable within the codebase initiation.
+This codebase also can be incubated in specifict module that implementing it. You can reshape the exclusive (incubated) module with strategy pattern, you can also copy and reproduce it to new instance.
+But you will need to be patience for this method will be available in version 2 ASAP.
+
+# Initialization
+This tactical codebase initiated with strategic pattern. You can enable or disable feature on the fly, even changing module version on the fly.
+```kotlin
+class MainApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        Singularity
+            .Init(this)
+            .EnableFeature(
+                Singularity.Feature.PLUTO_DEBUGGER,
+                Singularity.Feature.MULTI_DEX
+            )
+    }
+}
+```
 
 # Implementation
 ```groovy
@@ -24,21 +46,6 @@ dependencies {
 }
 ```
 
-# Initialization
-```kotlin
-class MainApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-
-        Singularity
-            .Init(this)
-            .EnableFeature(
-                Singularity.Feature.PLUTO_DEBUGGER,
-                Singularity.Feature.MULTI_DEX
-            )
-    }
-}
-```
 
 # Features
 - [Provider](https://github.com/SingularityIndonesia/AndroidCodebase/blob/docs/Provider.md)
