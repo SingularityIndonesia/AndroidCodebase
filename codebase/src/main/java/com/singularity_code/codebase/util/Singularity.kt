@@ -25,6 +25,9 @@ object Singularity {
         return this
     }
 
+    private var _enabledFeatures = mutableListOf<Feature>()
+    val enabledFeature: List<Feature> get() = _enabledFeatures
+
     fun EnableFeature(
         vararg features: Feature
     ): Singularity {
