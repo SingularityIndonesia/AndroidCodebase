@@ -38,6 +38,8 @@ object Singularity {
         if (features.contains(Feature.PLUTO_DEBUGGER))
             preparePluto(application)
 
+        _enabledFeatures.addAll(features)
+
         return this
     }
 
