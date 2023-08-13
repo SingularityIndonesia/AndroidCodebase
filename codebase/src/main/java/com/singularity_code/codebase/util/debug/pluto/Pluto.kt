@@ -16,7 +16,7 @@ fun preparePluto(
 ) {
 
     Pluto.Installer(application)
-        .addPlugin(PlutoNetworkPlugin("exceptions"))
+        .addPlugin(PlutoNetworkPlugin("network"))
         .addPlugin(PlutoExceptionsPlugin("exceptions"))
         .addPlugin(PlutoDatastorePreferencesPlugin("datastore"))
         .addPlugin(PlutoLoggerPlugin("logger"))
