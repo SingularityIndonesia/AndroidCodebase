@@ -6,3 +6,5 @@ val Throwable.errorMessage : ErrorMessage
         ?: this.cause?.localizedMessage
         ?: this.cause?.message
         ?: "Unknown Error"
+
+const val UNKNOWN_ERROR = "Unknown Error"
