@@ -99,7 +99,29 @@ val File.fileType: FileType
         }
     }
 
-@Deprecated("this warning is just to make sure you have setup the file provider")
+/**
+ *
+ * Add the following to your manifest:
+ * <provider
+ *     android:name="androidx.core.content.FileProvider"
+ *     android:authorities="${applicationId}.provider"
+ *     android:exported="false"
+ *     android:grantUriPermissions="true">
+ *     <meta-data
+ *         android:name="android.support.FILE_PROVIDER_PATHS"
+ *         android:resource="@xml/my_app_provider" />
+ * </provider>
+ *
+ * Make xml file forexample : my_app_provider.xml, with following pattern
+ * <paths xmlns:android="http://schemas.android.com/apk/res/android">
+ *     <files-path name="my_files" path="files/" />
+ *     <external-path name="download" path="Download/{AppName}/" />
+ * </paths>
+ */
+@Deprecated(
+    "this warning is just to make sure you have setup the file provider. " +
+            "Expose this function to see example of file provider setup"
+)
 fun writeToFileInExternalProviderDirectory(
     context: Context,
     fileName: String,
