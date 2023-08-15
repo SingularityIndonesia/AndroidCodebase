@@ -1,14 +1,20 @@
 package com.singularity_code.codebase.util.io
 
+import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.media.MediaScannerConnection
 import android.net.Uri
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
+import androidx.core.content.FileProvider
+import arrow.core.Either
+import arrow.core.Either.Right
+import arrow.core.Either.Left
+import com.singularity_code.codebase.util.serialization.ErrorMessage
+import com.singularity_code.codebase.util.serialization.UNKNOWN_ERROR
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -66,4 +72,140 @@ fun convertJpgToPng(
     }
 
     return pngFile
+}
+
+enum class FileType(
+    val mediaType: String
+) {
+    PNG_IMAGE(
+        "image/png"
+    ),
+    JPEG_IMAGE(
+        "image/jped"
+    ),
+    UNKNOWN("")
+}
+
+val File.fileType: FileType
+    get() = this.path.let {
+        it.substring(it.length - 6, it.length - 1)
+    }.let {
+        when {
+            it.contains(".png", true) -> FileType.PNG_IMAGE
+            it.contains(".jpeg", true)
+                    || it.contains(".jpg", true) -> FileType.JPEG_IMAGE
+
+            else -> FileType.UNKNOWN
+        }
+    }
+
+@Deprecated("this warning is just to make sure you have setup the file provider")
+fun writeToFileInExternalProviderDirectory(
+    context: Context,
+    fileName: String,
+    fileContent: String,
+    subDir: String = "",
+    notifyMediaScanner: Boolean = true
+): Either<ErrorMessage, File> {
+    val downloadsDir = File(context.getExternalFilesDir(null), subDir)
+    if (!downloadsDir.exists()) {
+        downloadsDir.mkdirs() // Create the directory if it doesn't exist
+    }
+
+    val file = File(downloadsDir, fileName)
+
+    return try {
+        val writer = FileWriter(file)
+        writer.append(fileContent)
+        writer.flush()
+        writer.close()
+
+        if (notifyMediaScanner)
+            notifyMediaScannerForANewFile(context, file)
+
+        Either.Right(file)
+    } catch (e: IOException) {
+        e.printStackTrace()
+        Either.Left(e.localizedMessage ?: e.message ?: UNKNOWN_ERROR)
+    }
+}
+
+fun notifyMediaScannerForANewFile(
+    context: Context,
+    file: File
+) {
+    MediaScannerConnection.scanFile(
+        context,
+        arrayOf<String>(file.absolutePath),
+        null
+    ) { _, _ ->
+        // Scan completed, you can perform any additional actions here
+    }
+}
+
+@SuppressLint("QueryPermissionsNeeded")
+fun openFileWithIntent(
+    context: Context,
+    file: File,
+    mimeType: String?,
+    providerAuthority: String
+): Either<ErrorMessage, Uri> {
+
+    val contentUri = runCatching {
+        FileProvider.getUriForFile(context, providerAuthority, file)
+            .let(::Right)
+    }.getOrElse {
+        Either.Left(it.localizedMessage ?: it.message ?: UNKNOWN_ERROR)
+    }
+
+    val uriIsValid = contentUri
+        .fold(
+            ifLeft = { false },
+            ifRight = {
+                isUriValid(context, it)
+            }
+        )
+
+    if (!uriIsValid) return Left("Uri invalid")
+
+    val openIntent = contentUri.map { uri ->
+        Intent(Intent.ACTION_VIEW).apply {
+            data = uri
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            mimeType?.let { mime ->
+                setDataAndType(uri, mime)
+            }
+        }
+    }
+
+    val result = openIntent.fold(
+        ifRight = {
+            if (it.resolveActivity(context.packageManager) == null)
+                Left("No installed apps can open this kind of file")
+            else {
+                context.startActivity(it)
+                contentUri
+            }
+        },
+        ifLeft = {
+            Left(it)
+        }
+    )
+
+    return result
+}
+
+fun isUriValid(
+    context: Context,
+    uri: Uri
+): Boolean {
+    return try {
+        val resolver = context.contentResolver
+        val inputStream = resolver.openInputStream(uri)
+        inputStream?.close()
+        true
+    } catch (e: Exception) {
+        false
+    }
 }
