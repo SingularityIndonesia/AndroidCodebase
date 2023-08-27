@@ -18,6 +18,35 @@ import java.io.*
 import java.text.SimpleDateFormat
 import java.util.Date
 
+fun getJPEGImageFromUri(
+    context: Context,
+    qualityInPercent: Int,
+    uri: Uri
+): File {
+    val pngFile: File = context.createImageFileJPG()
+    val contentResolver: ContentResolver = context.contentResolver
+    val inputStream: InputStream? = contentResolver.openInputStream(uri)
+    val jpegBitmap = BitmapFactory.decodeStream(inputStream)
+
+    if (jpegBitmap != null) {
+        val outputStream = FileOutputStream(pngFile)
+
+        try {
+            jpegBitmap.compress(Bitmap.CompressFormat.JPEG, qualityInPercent, outputStream)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            outputStream.flush()
+            outputStream.close()
+        }
+    } else {
+        // Handle the case when decoding the JPEG fails
+        // For example, the file might not exist or might not be a valid image.
+        throw Error("File not found")
+    }
+
+    return pngFile
+}
 
 fun Context.createImageFileJPG(): File {
     // Create an image file name
