@@ -14,6 +14,8 @@ This concept make it possible to upgrade the codebase without doing refactor. Bu
 This codebase also can be incubated in specifict module that implementing it. You can reshape the exclusive (incubated) module with strategy pattern, you can also copy and reproduce it to new instance.
 But you will need to be patience for this method will be available in version 2 ASAP.
 
+By using this method plus dynamic module scheme, you will never be worry about **Module Size** and **Backward Compatibility**, **Ever Again**.
+
 *Tactical codebase is now Alpha*. Check [Releases](https://github.com/SingularityIndonesia/AndroidCodebase/releases).
 
 # Initialization
