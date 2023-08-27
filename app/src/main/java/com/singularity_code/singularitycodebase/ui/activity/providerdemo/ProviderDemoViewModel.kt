@@ -1,6 +1,7 @@
 package com.singularity_code.singularitycodebase.ui.activity.providerdemo
 
 import androidx.lifecycle.ViewModel
+import com.singularity_code.codebase.pattern.v2.CDBS_V1
 import com.singularity_code.codebase.util.flow.collect
 import com.singularity_code.codebase.util.flow.lazyFunction
 import com.singularity_code.codebase.util.flow.provider
@@ -19,7 +20,12 @@ class ProviderDemoViewModel(
 ) : ViewModel() {
 
     /** Creating a Provider **/
-    val sampleProvider by provider(repository::getSample)
+    val sampleProvider by lazy {
+        with(CDBS_V1()) {
+            provider(repository::getSample)
+                .value
+        }
+    }
 
     /**
      * this is the pattern that I recommended,
