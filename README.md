@@ -14,6 +14,8 @@ This concept make it possible to upgrade the codebase without doing refactor. Bu
 This codebase also can be incubated in specifict module that implementing it. You can reshape the exclusive (incubated) module with strategy pattern, you can also copy and reproduce it to new instance.
 But you will need to be patience for this method will be available in version 2 ASAP.
 
+By using this method plus dynamic module scheme, you will never be worry about **Module Size** and **Backward Compatibility**, **Ever Again**. Check this article for more information (https://medium.com/@stefanus.ayudha/tactical-code-base-kotlin-bd5ac918ffc6).
+
 *Tactical codebase is now Alpha*. Check [Releases](https://github.com/SingularityIndonesia/AndroidCodebase/releases).
 
 # Initialization
@@ -43,8 +45,8 @@ allprojects {
 }
 
 dependencies {
-    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-01'
-    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-01-debug'
+    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-03'
+    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-03-debug'
 }
 ```
 
@@ -80,5 +82,5 @@ Feel free to chat with me: [Stefanus Ayudha](https://github.com/stefanusayudha)
 
 # Currently Powered by Singularity
 <p float="left">
-<img src="https://github.com/SingularityIndonesia/AndroidCodebase/blob/docs/image/Logo64.png" width="64" alt="5T Salesman Tracker">
+<img src="https://github.com/SingularityIndonesia/AndroidCodebase/blob/docs/image/FineBlend.png" width="64" alt="5T Salesman Tracker">
 </p>

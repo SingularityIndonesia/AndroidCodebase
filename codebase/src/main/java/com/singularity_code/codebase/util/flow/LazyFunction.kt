@@ -12,7 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
  * this function will wait till the current operation to succeed, to execute the next request.
  * if there are multiple invocation request, this function will only invoke once after the current operation succeed.
  */
-fun ViewModel.lazyFunction(
+context (ViewModel)
+fun lazyFunction(
     block: suspend () -> Unit
 ): LazyFunction {
     return object : LazyFunction {
@@ -55,7 +56,8 @@ fun ViewModel.lazyFunction(
  * this function will wait till the current operation to succeed, to execute the next request.
  * if there are multiple invocation request, this function will only invoke once after the current operation succeed.
  */
-fun Fragment.lazyFunction(
+context (Fragment)
+fun lazyFunction(
     block: suspend () -> Unit
 ): LazyFunction {
     return object : LazyFunction {
