@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-@Deprecated("this flowing provider is cool but use it wisely")
+@Deprecated("we recommending using new provider")
 fun <P : Payload, D : Any> ViewModel.provider(
     operator: suspend (P) -> Flow<Either<ErrorMessage, D>>,
     privateContext: CoroutineContext = Dispatchers.IO + SupervisorJob(),
