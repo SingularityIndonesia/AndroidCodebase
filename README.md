@@ -82,5 +82,5 @@ Feel free to chat with me: [Stefanus Ayudha](https://github.com/stefanusayudha)
 
 # Currently Powered by Singularity
 <p float="left">
-<img src="https://github.com/SingularityIndonesia/AndroidCodebase/blob/docs/image/Logo64.png" width="64" alt="5T Salesman Tracker">
+<img src="https://github.com/SingularityIndonesia/Func_It/blob/docs/image/FineBlend.png" width="64" alt="5T Salesman Tracker">
 </p>
