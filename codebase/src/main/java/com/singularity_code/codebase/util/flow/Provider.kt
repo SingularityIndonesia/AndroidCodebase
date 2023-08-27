@@ -2,8 +2,8 @@ package com.singularity_code.codebase.util.flow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.None
 import arrow.core.Option
-import arrow.core.none
 import arrow.core.some
 import com.singularity_code.codebase.pattern.Payload
 import com.singularity_code.codebase.pattern.VMData
@@ -26,7 +26,7 @@ import timber.log.Timber
  */
 
 context (JobSupervisor, ViewModel)
-fun <P : Payload, D> provider(
+fun <P : Payload, D : Any> provider(
     operator: suspend (P) -> Result<D>,
     retrial: Int = 3
 ): Lazy<Provider<P, D>> {
@@ -46,14 +46,14 @@ fun <P : Payload, D> provider(
                 .map {
                     if (it is VMData.Success)
                         it.data.some()
-                    else none()
+                    else None
                 }.flowOn(Dispatchers.IO)
 
             override val error: Flow<Option<ErrorMessage>> = snapshot
                 .map {
                     if (it is VMData.Failed)
                         it.message.some()
-                    else none()
+                    else None
                 }.flowOn(Dispatchers.IO)
 
             override val operator: suspend (P) -> Result<D> = operator
@@ -88,8 +88,8 @@ fun <P : Payload, D> provider(
                 if (retrial > 0)
                     collectEach(
                         error
-                    ) {
-                        it.onSome {
+                    ) { errorMsg ->
+                        errorMsg.onSome {
                             onFailed()
                         }
                     }

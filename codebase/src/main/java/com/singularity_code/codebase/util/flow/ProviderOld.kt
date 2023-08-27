@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 context (CDBS_V1, ViewModel)
+@Deprecated("")
 fun <P : Payload, D : Any> provider(
     operator: suspend (P) -> Flow<Either<ErrorMessage, D>>,
     privateContext: CoroutineContext = Dispatchers.IO + SupervisorJob(),

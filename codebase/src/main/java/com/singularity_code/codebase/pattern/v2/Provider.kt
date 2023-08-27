@@ -12,7 +12,7 @@ import kotlin.coroutines.CoroutineContext
  * Design by: stefanus.ayudha@gmail.com
  */
 
-interface Provider<P : Payload, D> {
+interface Provider<P : Payload, D: Any> {
 
     val loading: Flow<Boolean>
 

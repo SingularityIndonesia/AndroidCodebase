@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.onEach
 
 /** # Activity **/
-fun <T> Activity.collect(
+context (Activity)
+fun <T> collect(
     provider: Flow<T>,
     block: suspend (T) -> Unit
 ) = viewJob {
@@ -20,7 +21,8 @@ fun <T> Activity.collect(
 }
 
 /** this will collect every state even though the state is the same as it previous state **/
-fun <T> Activity.collectEach(
+context (Activity)
+fun <T> collectEach(
     state: Flow<T>,
     block: suspend (T) -> Unit
 ) = viewJob {
@@ -30,7 +32,8 @@ fun <T> Activity.collectEach(
 }
 
 /** # Fragment **/
-fun <T> Fragment.collect(
+context (Fragment)
+fun <T> collect(
     provider: Flow<T>,
     block: suspend (T) -> Unit
 ) = viewJob {
@@ -40,7 +43,8 @@ fun <T> Fragment.collect(
 }
 
 /** this will collect every state even though the state is the same as it previous state **/
-fun <T> Fragment.collectEach(
+context (Fragment)
+fun <T> collectEach(
     state: Flow<T>,
     block: suspend (T) -> Unit
 ) = viewJob {
