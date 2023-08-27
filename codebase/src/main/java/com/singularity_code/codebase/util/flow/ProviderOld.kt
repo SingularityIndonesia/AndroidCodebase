@@ -16,8 +16,8 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-context (CDBS_V1)
-fun <P : Payload, D : Any> ViewModel.provider(
+context (CDBS_V1, ViewModel)
+fun <P : Payload, D : Any> provider(
     operator: suspend (P) -> Flow<Either<ErrorMessage, D>>,
     privateContext: CoroutineContext = Dispatchers.IO + SupervisorJob(),
     retrial: Int = 3
@@ -57,7 +57,7 @@ fun <P : Payload, D : Any> ViewModel.provider(
                 latestPayload = payload
 
                 _job?.cancel()
-                _job = this@provider.viewModelScope.launch(privateContext) {
+                _job = viewModelScope.launch(privateContext) {
 
                     _state.emit(
                         loading()

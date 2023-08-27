@@ -25,8 +25,8 @@ import timber.log.Timber
  * Design by: stefanus.ayudha@gmail.com
  */
 
-context (JobSupervisor)
-fun <P : Payload, D : Any> ViewModel.provider(
+context (JobSupervisor, ViewModel)
+fun <P : Payload, D> provider(
     operator: suspend (P) -> Result<D>,
     retrial: Int = 3
 ): Lazy<Provider<P, D>> {
@@ -65,7 +65,7 @@ fun <P : Payload, D : Any> ViewModel.provider(
                 latestPayload = payload
 
                 _job?.cancel()
-                _job = this@provider.viewModelScope
+                _job = viewModelScope
                     .launch(superVisorContext) {
                         snapshot.emit(
                             loading()
