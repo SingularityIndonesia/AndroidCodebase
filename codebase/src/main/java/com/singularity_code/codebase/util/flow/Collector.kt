@@ -51,7 +51,8 @@ fun <T> Fragment.collectEach(
 
 /** # ViewModel **/
 
-fun <T> ViewModel.collect(
+context (ViewModel)
+fun <T> collect(
     state: Flow<T>,
     block: suspend (T) -> Unit
 ) = viewModelJob {
@@ -61,7 +62,8 @@ fun <T> ViewModel.collect(
 }
 
 /** this will collect every state even though the state is the same as it previous state **/
-fun <T> ViewModel.collectEach(
+context (ViewModel)
+fun <T> collectEach(
     state: Flow<T>,
     block: suspend (T) -> Unit
 ) = viewModelJob {
@@ -70,7 +72,8 @@ fun <T> ViewModel.collectEach(
     }.collect()
 }
 
-fun ViewModel.updateOn(
+context (ViewModel)
+fun updateOn(
     vararg flows: Pair<Flow<*>, Boolean>,
     block: suspend () -> Unit
 ): LazyFunction {

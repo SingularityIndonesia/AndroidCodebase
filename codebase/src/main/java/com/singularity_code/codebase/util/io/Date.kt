@@ -129,3 +129,10 @@ fun String.getMonth(pattern: String = "yyyy-MM-dd"): Int {
     calendar.time = date
     return calendar.get(java.util.Calendar.MONTH) + 1 // Months are 0-based, so add 1.
 }
+
+fun Long.dateString(pattern: String = "dd-MM-yyyy"): String {
+    val formatter = SimpleDateFormat(pattern, Locale.getDefault())
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = this
+    return formatter.format(calendar.time)
+}

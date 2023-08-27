@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 
-fun <T> ViewModel.register(
+context (ViewModel)
+fun <T> register(
     default: T
 ): Lazy<Register<T>> = lazy {
     object : Register<T> {

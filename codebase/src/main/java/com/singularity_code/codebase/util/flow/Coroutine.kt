@@ -13,22 +13,31 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 /** # Activity **/
-val Activity.ViewScope get() = MainScope()
-fun Activity.viewJob(block: suspend () -> Unit): Job =
+context (Activity)
+val ViewScope
+    get() = MainScope()
+
+context (Activity)
+fun viewJob(block: suspend () -> Unit): Job =
     ViewScope.launch {
         block.invoke()
     }
 
 /** # Fragment **/
-val Fragment.ViewScope get() = viewLifecycleOwner.lifecycleScope
-fun Fragment.viewJob(
+context (Fragment)
+val ViewScope
+    get() = viewLifecycleOwner.lifecycleScope
+
+context (Fragment)
+fun viewJob(
     block: suspend () -> Unit
 ) = ViewScope.launch {
     block.invoke()
 }
 
 /** # ViewModel **/
-fun ViewModel.viewModelJob(
+context (ViewModel)
+fun viewModelJob(
     superVisorJob: CompletableJob = SupervisorJob(),
     block: suspend CoroutineScope.() -> Unit
 ): Job {
