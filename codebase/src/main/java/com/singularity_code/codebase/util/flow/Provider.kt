@@ -1,60 +1,62 @@
 package com.singularity_code.codebase.util.flow
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import arrow.core.Either
+import arrow.core.Option
+import arrow.core.none
+import arrow.core.some
 import com.singularity_code.codebase.pattern.Payload
-import com.singularity_code.codebase.pattern.Provider
 import com.singularity_code.codebase.pattern.VMData
-import com.singularity_code.codebase.util.serialization.ErrorMessage
-import com.singularity_code.codebase.util.serialization.default
-import com.singularity_code.codebase.util.serialization.failed
-import com.singularity_code.codebase.util.serialization.loading
-import com.singularity_code.codebase.util.serialization.success
+import com.singularity_code.codebase.pattern.v2.JobSupervisor
+import com.singularity_code.codebase.pattern.v2.Provider
+import com.singularity_code.codebase.util.serialization.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
+import timber.log.Timber
 
+/**
+ * Created by: stefanus
+ * 27/08/23 08.51
+ * Design by: stefanus.ayudha@gmail.com
+ */
+
+context (JobSupervisor)
 fun <P : Payload, D : Any> ViewModel.provider(
-    operator: suspend (P) -> Flow<Either<ErrorMessage, D>>,
-    privateContext: CoroutineContext = Dispatchers.IO + SupervisorJob(),
+    operator: suspend (P) -> Result<D>,
     retrial: Int = 3
 ): Lazy<Provider<P, D>> {
     return lazy {
         object : Provider<P, D> {
 
             private var _job: Job? = null
-            private val _state: MutableStateFlow<VMData<D>> =
+            private val snapshot: MutableStateFlow<VMData<D>> =
                 MutableStateFlow(default())
-            override val state: Flow<VMData<D>> = _state
 
-            override val success: Flow<Pair<Boolean, D?>> = state.map {
-                (it is VMData.Success) to
-                        if (it is VMData.Success)
-                            it.data
-                        else null
-            }
+            override val loading: Flow<Boolean> = snapshot
+                .map {
+                    it is VMData.Loading
+                }.flowOn(Dispatchers.IO)
 
-            override val failed: Flow<Pair<Boolean, String?>> = state.map {
-                (it is VMData.Failed) to
-                        if (it is VMData.Failed)
-                            it.message
-                        else null
-            }
+            override val success: Flow<Option<D>> = snapshot
+                .map {
+                    if (it is VMData.Success)
+                        it.data.some()
+                    else none()
+                }.flowOn(Dispatchers.IO)
 
-            override val loading: Flow<Boolean> = state.map {
-                it is VMData.Loading
-            }
+            override val error: Flow<Option<ErrorMessage>> = snapshot
+                .map {
+                    if (it is VMData.Failed)
+                        it.message.some()
+                    else none()
+                }.flowOn(Dispatchers.IO)
 
-            override val operator: suspend (P) -> Flow<Either<ErrorMessage, D>> = operator
+            override val operator: suspend (P) -> Result<D> = operator
 
             private lateinit var latestPayload: P
             override fun update(
@@ -63,33 +65,31 @@ fun <P : Payload, D : Any> ViewModel.provider(
                 latestPayload = payload
 
                 _job?.cancel()
-                _job = this@provider.viewModelScope.launch(privateContext) {
+                _job = this@provider.viewModelScope
+                    .launch(superVisorContext) {
+                        snapshot.emit(
+                            loading()
+                        )
 
-                    _state.emit(
-                        loading()
-                    )
+                        operator.invoke(payload)
+                            .onSuccess {
+                                snapshot.emit(success(it))
+                            }
+                            .onFailure {
+                                snapshot.emit(
+                                    failed(it.errorMessage)
+                                )
+                            }
 
-                    operator.invoke(payload).onEach { result ->
-                        result.map {
-                            _state.emit(
-                                success(it)
-                            )
-                        }.mapLeft {
-                            _state.emit(
-                                failed(it)
-                            )
-                        }
-                    }.collect()
-
-                }
+                    }
             }
 
             init {
                 if (retrial > 0)
                     collectEach(
-                        failed
+                        error
                     ) {
-                        if (it.first) {
+                        it.onSome {
                             onFailed()
                         }
                     }
@@ -104,7 +104,7 @@ fun <P : Payload, D : Any> ViewModel.provider(
                 }
 
                 retrialCount += 1
-                Log.d("Provider", "onFailed: Retrying $retrialCount")
+                Timber.tag("Provider").d("onFailed: Retrying %d" + retrialCount)
                 update(latestPayload)
             }
         }
