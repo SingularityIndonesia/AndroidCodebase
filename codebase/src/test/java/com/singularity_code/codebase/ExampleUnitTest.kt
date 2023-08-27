@@ -1,6 +1,8 @@
 package com.singularity_code.codebase
 
-import org.junit.Assert.assertEquals
+import com.singularity_code.codebase.pattern.v2.CDBS_V1
+import com.singularity_code.codebase.util.tactical.this_function_should_always_be_visible_in_ver_latest
+import com.singularity_code.codebase.util.tactical.this_function_should_only_be_visible_in_ver_1
 import org.junit.Test
 
 /**
@@ -11,6 +13,12 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        val codebaseV1Scope = CDBS_V1()
+
+        with(codebaseV1Scope) {
+            this_function_should_always_be_visible_in_ver_latest()
+            this_function_should_only_be_visible_in_ver_1()
+        }
+
     }
 }

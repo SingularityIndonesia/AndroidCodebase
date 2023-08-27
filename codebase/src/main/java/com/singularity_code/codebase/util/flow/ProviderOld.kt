@@ -7,23 +7,16 @@ import arrow.core.Either
 import com.singularity_code.codebase.pattern.Payload
 import com.singularity_code.codebase.pattern.Provider
 import com.singularity_code.codebase.pattern.VMData
-import com.singularity_code.codebase.util.serialization.ErrorMessage
-import com.singularity_code.codebase.util.serialization.default
-import com.singularity_code.codebase.util.serialization.failed
-import com.singularity_code.codebase.util.serialization.loading
-import com.singularity_code.codebase.util.serialization.success
+import com.singularity_code.codebase.pattern.v2.CDBS_V1
+import com.singularity_code.codebase.util.serialization.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-@Deprecated("we recommending using new provider")
+context (CDBS_V1)
 fun <P : Payload, D : Any> ViewModel.provider(
     operator: suspend (P) -> Flow<Either<ErrorMessage, D>>,
     privateContext: CoroutineContext = Dispatchers.IO + SupervisorJob(),
