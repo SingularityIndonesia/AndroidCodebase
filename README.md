@@ -14,6 +14,8 @@ This concept make it possible to upgrade the codebase without doing refactor. Bu
 This codebase also can be incubated in specifict module that implementing it. You can reshape the exclusive (incubated) module with strategy pattern, you can also copy and reproduce it to new instance.
 But you will need to be patience for this method will be available in version 2 ASAP.
 
+*Tactical codebase is now Alpha*. Check [Releases](https://github.com/SingularityIndonesia/AndroidCodebase/releases).
+
 # Initialization
 This tactical codebase initiated with strategic pattern. You can enable or disable feature on the fly, even changing module version on the fly.
 ```kotlin
@@ -41,8 +43,8 @@ allprojects {
 }
 
 dependencies {
-    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:1.12.0'
-    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:1.12.0-debug'
+    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-01'
+    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-01-debug'
 }
 ```
 
