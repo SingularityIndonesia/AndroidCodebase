@@ -91,34 +91,25 @@ class MViewModel(
      * Car display list is a list of CarDisplay not Car. 
      * The purpose of CarDisplay object is to make it capable to hold the UI state with it, such selected, maybe enable and disable as well.
      * **/
-    val carsDisplay: Flow<List<CarsDisplay>> by lazy {
-        MutableStateFlow(listOf<CardDisplay>())
-            .automate { flow ->
-                /** automation scope **/
-                combine(
-                    sampleProvider.success,
-                    selectedCarID,
-                ) { carProviderSuccess, selectedCarID ->
-                    carProviderSuccess
-                        .fold {
-                            ifEmpty = { listOf()}
-                            ifSome = { it }
-                        }
-                        /** manage selected car **/
-                        .map {
-                            CarDisplay(
-                                car = it,
-                                selected = it.id == selectedCarID
-                            )
-                        }
-                }.flowOn(Dispatchers.IO)
-                    .collect { carDisplayList ->
-                        flow.emit(carDisplayList)
-                    }
-
-            }
-
-    }
+    val carsDisplay: Flow<List<CarsDisplay>> =
+        /** automation state **/
+        combine(
+            sampleProvider.success,
+            selectedCarID,
+        ) { carProviderSuccess, selectedCarID ->
+            carProviderSuccess
+                .fold {
+                    ifEmpty = { listOf()}
+                    ifSome = { it }
+                }
+                /** manage selected car **/
+                .map {
+                    CarDisplay(
+                        car = it,
+                        selected = it.id == selectedCarID
+                    )
+                }
+        }.flowOn(Dispatchers.IO)
 }
 ```
 
