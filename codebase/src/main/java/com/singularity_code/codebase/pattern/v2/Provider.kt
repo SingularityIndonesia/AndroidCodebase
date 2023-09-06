@@ -18,7 +18,7 @@ interface Provider<P : Payload, D> {
 
     val success: Flow<Option<D>>
 
-    val error: Flow<Option<ErrorMessage>>
+    val error: Flow<Option<Exception>>
 
     val operator: suspend (P) -> Result<D>
 
