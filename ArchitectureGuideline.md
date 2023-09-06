@@ -112,8 +112,8 @@ class MViewModel(
                             )
                         }
                 }.flowOn(Dispatchers.IO)
-                    .collect { text ->
-                        flow.emit(text)
+                    .collect { carDisplayList ->
+                        flow.emit(carDisplayList)
                     }
 
             }
