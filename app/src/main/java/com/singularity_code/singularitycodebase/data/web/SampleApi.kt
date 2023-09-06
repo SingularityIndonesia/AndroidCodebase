@@ -11,5 +11,5 @@ interface SampleApi {
     @GET("somewhere")
     suspend fun getSampleData(
         @QueryMap queries: HashMap<String,String>
-    ): ResponseE<ErrorWrapper, SampleResult>
+    ): SampleResult
 }

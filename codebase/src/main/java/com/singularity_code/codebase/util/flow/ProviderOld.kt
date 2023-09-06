@@ -14,6 +14,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import kotlin.coroutines.CoroutineContext
 
 context (CDBS_V1)
@@ -40,7 +41,7 @@ fun <P : Payload, D : Any> ViewModel.provider(
             override val failed: Flow<Pair<Boolean, String?>> = state.map {
                 (it is VMData.Failed) to
                         if (it is VMData.Failed)
-                            it.message
+                            it.e.errorMessage
                         else null
             }
 
@@ -70,7 +71,7 @@ fun <P : Payload, D : Any> ViewModel.provider(
                             )
                         }.mapLeft {
                             _state.emit(
-                                failed(it)
+                                failed(Exception(it))
                             )
                         }
                     }.collect()

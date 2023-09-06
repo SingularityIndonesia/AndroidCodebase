@@ -1,5 +1,6 @@
 package com.singularity_code.codebase.util.flow
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Option
@@ -12,12 +13,14 @@ import com.singularity_code.codebase.pattern.v2.Provider
 import com.singularity_code.codebase.util.serialization.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Created by: stefanus
@@ -25,9 +28,9 @@ import timber.log.Timber
  * Design by: stefanus.ayudha@gmail.com
  */
 
-context (JobSupervisor)
 fun <P : Payload, D : Any> ViewModel.provider(
     operator: suspend (P) -> Result<D>,
+    superVisorContext: CoroutineContext = Dispatchers.IO + SupervisorJob(),
     retrial: Int = 3
 ): Lazy<Provider<P, D>> {
     return lazy {
@@ -49,10 +52,10 @@ fun <P : Payload, D : Any> ViewModel.provider(
                     else none()
                 }.flowOn(Dispatchers.IO)
 
-            override val error: Flow<Option<ErrorMessage>> = snapshot
+            override val error: Flow<Option<Exception>> = snapshot
                 .map {
                     if (it is VMData.Failed)
-                        it.message.some()
+                        it.e.some()
                     else none()
                 }.flowOn(Dispatchers.IO)
 
@@ -77,7 +80,7 @@ fun <P : Payload, D : Any> ViewModel.provider(
                             }
                             .onFailure {
                                 snapshot.emit(
-                                    failed(it.errorMessage)
+                                    failed(Exception(it))
                                 )
                             }
 

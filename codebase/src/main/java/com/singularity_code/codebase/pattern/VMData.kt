@@ -7,6 +7,6 @@ sealed interface VMData<T> {
         val data: T
     }
     interface Failed<T> : VMData<T> {
-        val message: String
+        val e: Exception
     }
 }

@@ -15,10 +15,10 @@ private data class SuccessImpl<T>(
 ) : VMData.Success<T>
 
 private data class FailedImpl<T>(
-    override val message: String
+    override val e: Exception
 ) : VMData.Failed<T>
 
 fun <T> default(): VMData.Default<T> = DefaultImpl()
 fun <T> loading(): VMData.Loading<T> = LoadingImpl()
 fun <T> success(data: T): VMData.Success<T> = SuccessImpl(data = data)
-fun <T> failed(message: String): VMData.Failed<T> = FailedImpl(message = message)
+fun <T> failed(e: Exception): VMData.Failed<T> = FailedImpl(e)
