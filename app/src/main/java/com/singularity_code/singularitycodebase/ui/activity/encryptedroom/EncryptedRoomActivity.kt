@@ -32,8 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import com.singularity_code.codebase.util.Singularity
-import com.singularity_code.codebase.util.io.getSimCardInformation
-import com.singularity_code.codebase.util.io.hasPermissions
+import com.singularity_code.codebase.util.system.getSimCardInformation
+import com.singularity_code.codebase.util.system.hasPermissions
 import com.singularity_code.codebase.util.io.room.encryptedDb
 import com.singularity_code.singularitycodebase.data.db.MyEncryptedDatabase
 import com.singularity_code.singularitycodebase.data.model.User
