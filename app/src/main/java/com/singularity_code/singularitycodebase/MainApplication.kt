@@ -10,7 +10,7 @@ class MainApplication : Application() {
         Singularity
             .Init(this)
             .EnableFeature(
-                Singularity.Feature.PLUTO_DEBUGGER(),
+                /*Singularity.Feature.PLUTO_DEBUGGER(),*/
                 Singularity.Feature.MULTI_DEX()
             )
     }
