@@ -1,6 +1,9 @@
 # MVI + State Automation
 Designed by [Stefanus Ayudha](https://github.com/stefanusayudha)
 
+## Use MVI
+Communication should be done in single channel, that just make sense.
+
 ## Model hold the UI State
 ```mermaid
 graph LR
@@ -16,64 +19,105 @@ B --> D{{Presentation}}
 ```
 
 ## Example
+### The Models
 ```kotlin
+@JvmInline
+value class CarID(val value: String)
+
+@JvmInline
+value class CarName(val value: String)  
+
 data class Car(
-    val id: String
+    val id: CarID,
+    val name: CarName,  
 )
 
 data class CarDisplay(
     val car: Car,
-    val selected: Boolean
+    val selected: Boolean = false,
 )
+```
 
+### The Intents
+```kotlin
+sealed interface MViewModelIntent
+
+object Idle : MViewModelIntent
+
+data class SelectCar(
+    val carID: CarID
+): MViewModelIntent
+
+data class UpdateCarList(
+    val pld: GetCarsPLD
+): MViewModelIntent
+```
+
+### The viewModel
+```kotlin
 class MViewModel(
     val repo: CarRepo
 ) : ViewModel() {
+    
+    val intent by register<MViewModelIntent>(Idle)
 
-    val carListProvider by provider(repo::getCarList)
-    val selectedCarId: Flow<String>
-
-    val carListDisplay by lazy {
-
-        /** internal private flow **/
-        val flow = MutableStateFlow(listOf<CarDisplay>())
-
-        /** updater **/
-        val updater = lazyFunction {
-            val currentList = carListProvider.success.first().second ?: listOf<Car>()
-            val selectedId = selectedCarId.first()
-
-            val carListDisplay = currentList
-                .map { car ->
-                    CarDisplay(
-                        car = car,
-                        selected = car.id == selectedId
-                    )
-                }
-
-            flow.emit(carListDisplay)
-        }
-
-        /** state relations **/
-        run {
-            collect(
-                carListProvider.success
-            ) {
-                updater.tryInvoke(
-                    signature = "carListProvider + ${System.currentTimeMillis()}"
-                )
-            }
-
-            collect(
-                selectedCarId
-            ) {
-                updater.tryInvoke(
-                    signature = "selectedCarId + ${System.currentTimeMillis()}"
-                )
-            }
-        }
+    /** provide data of cars **/
+    val carsProvider: Provider<GetCarsPLD, List<Car>> by lazy {
+        val provider by provider(operator = repository::getCars)
         
-        flow
+        /** automate the provider on receive message **/
+        provider.automate {
+            collect(intent.data) { i ->
+                if (i is UpdateCarList) {
+                    provider.update(intent.pld)
+                }
+            }
+        }
+    }
+    
+    /** selected car, in case user select a car from the list**/
+    val selectedCarID: Flow<Option<CarID>> by lazy { 
+        MutableState(None)
+            .automate { flow ->
+                collect(intent.data) { i ->
+                    if (i is SelectCar) {
+                        flow.emit(Some(i.carID))
+                    }
+                }
+            }
+    }
+
+    /** # Model Hold The UI State 
+     * Car display list is a list of CarDisplay not Car. 
+     * The purpose of CarDisplay object is to make it capable to hold the UI state with it, such selected, maybe enable and disable as well.
+     * **/
+    val carsDisplay: Flow<List<CarsDisplay>> by lazy {
+        MutableStateFlow(listOf<CardDisplay>())
+            .automate { flow ->
+                /** automation scope **/
+                combine(
+                    sampleProvider.success,
+                    selectedCarID,
+                ) { carProviderSuccess, selectedCarID ->
+                    carProviderSuccess
+                        .fold {
+                            ifEmpty = { listOf()}
+                            ifSome = { it }
+                        }
+                        /** manage selected car **/
+                        .map {
+                            CarDisplay(
+                                car = it,
+                                selected = it.id == selectedCarID
+                            )
+                        }
+                }.flowOn(Dispatchers.IO)
+                    .collect { text ->
+                        flow.emit(text)
+                    }
+
+            }
+
     }
 }
 ```
