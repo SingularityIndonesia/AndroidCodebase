@@ -45,8 +45,8 @@ allprojects {
 }
 
 dependencies {
-    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-07'
-    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230827-07-debug'
+    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230906'
+    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230906-debug'
 }
 ```
 
