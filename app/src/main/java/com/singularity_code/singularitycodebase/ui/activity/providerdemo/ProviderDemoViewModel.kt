@@ -33,7 +33,7 @@ class ProviderDemoViewModel(
     val sampleText: Flow<String> by lazy {
 
         MutableStateFlow("")
-            .automate { flow ->
+            .automate {
                 // updater function
                 combine(
                     sampleProvider.loading,
@@ -48,7 +48,7 @@ class ProviderDemoViewModel(
                     }
                 }.flowOn(Dispatchers.IO)
                     .collect { text ->
-                        flow.emit(text)
+                        emit(text)
                     }
 
             }
