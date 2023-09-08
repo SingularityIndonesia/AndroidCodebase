@@ -5,6 +5,7 @@ Designed by [Stefanus Ayudha](https://github.com/stefanusayudha)
 Communication should be done in single channel, that just make sense.
 
 ## Model hold the UI State
+Every UI state should be manifested in the model. For example: selected, active, inactive, etc.
 ```mermaid
 graph LR
 A[Cars] --> B[CarDisplay] --> C{{Presentation}}
