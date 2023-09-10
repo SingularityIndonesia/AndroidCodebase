@@ -70,7 +70,7 @@ class MViewModel(
         provider.automate {
             collect(intent.data) { i ->
                 if (i is UpdateCarList) {
-                    provider.update(intent.pld)
+                    update(intent.pld)
                 }
             }
         }
@@ -79,10 +79,10 @@ class MViewModel(
     /** selected car, in case user select a car from the list**/
     val selectedCarID: Flow<Option<CarID>> by lazy { 
         MutableState(None)
-            .automate { flow ->
+            .automate { 
                 collect(intent.data) { i ->
                     if (i is SelectCar) {
-                        flow.emit(Some(i.carID))
+                        emit(Some(i.carID))
                     }
                 }
             }
