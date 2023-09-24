@@ -45,8 +45,8 @@ allprojects {
 }
 
 dependencies {
-    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230908'
-    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230908-debug'
+    releaseImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230911'
+    debugImplementation 'com.github.SingularityIndonesia:AndroidCodebase:2.0.0-alpha1-20230911-debug'
 }
 ```
 
@@ -69,6 +69,7 @@ dependencies {
 
 # Architecture Guideline
 See : [Architecture Guideline](https://github.com/SingularityIndonesia/AndroidCodebase/blob/docs/ArchitectureGuideline.md)
+Example : [Android Multi Module Guide](https://github.com/SingularityIndonesia/AndroidArchitectureGuide)
 
 # Note
 Note that this example was made as simple as possible, so it is not recommended to follow the architecture of the given sample and please read the notes.
